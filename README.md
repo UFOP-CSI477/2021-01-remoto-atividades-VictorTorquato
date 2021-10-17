@@ -2,13 +2,13 @@
 
 ## Atualize os seus dados:
 
-- Nome:
-- Matrícula:
-- Curso:
-- Semestre/Ano correntes:
-- Link para o seu GitHub:
+- Nome: Victor Elias T. Barboza
+- Matrícula: 19.1.8010
+- Curso: Sistemas de Informações
+- Semestre/Ano correntes: 
+- Link para o seu GitHub: https://github.com/VictorTorquato
 
 ## [Projeto final:](./Projeto/README.md) 
 
-Apresente uma breve descrição do seu projeto.
+- Tema: Controle de Revisão de Veículos
 
