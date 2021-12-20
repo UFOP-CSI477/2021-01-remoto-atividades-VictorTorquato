@@ -15,12 +15,20 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->bigInteger('subject_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('subject_id');
             $table->string('person', 255);
             $table->string('description', 255);
             $table->date('date');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
+            $table->foreign('subject_id')
+                ->references('id')
+                ->on('subjects');
         });
     }
 
