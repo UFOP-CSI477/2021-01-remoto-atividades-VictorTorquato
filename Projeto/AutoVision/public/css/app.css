@@ -1,0 +1,47 @@
+
+.imgtext {
+  color: white;
+  /* padding: 50px 15px 0 15px; */
+  opacity: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-shadow: 0px 0px 5px #000;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.imgContainer {
+  background: rgba(0, 0, 0, 0.89);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.imgContainer img {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -ms-filter: blur(1px);
+  -o-filter: blur(1px);
+  filter: blur(1px);
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.imgContainer:hover img {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -ms-filter: blur(4px);
+  -o-filter: blur(4px);
+  filter: blur(4px);
+  transform: scale(1.03);
+}
+
+.imgContainer:hover .imgtext {
+  -webkit-opacity: 1;
+  opacity: 1;
+}
