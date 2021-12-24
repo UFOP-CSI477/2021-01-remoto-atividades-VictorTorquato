@@ -3,7 +3,7 @@
     <title>AutoVision - Meus Carros</title>
 </head>
 
-@extends('layouts.default')
+@extends('layouts.defaultLogged')
 @section('content')
 
     <div class="container">
@@ -15,8 +15,8 @@
 
         <h3 style="margin-top: 2rem">Carros Cadastrados: </h3>
 
-        <div class="container">
-            <table class="table table-secondary table-striped table-bordered">
+        <div class="container" style="margin-top: 2rem">
+            <table class="table table-secondary table-striped table-bordered" style="text-align: center">
                 <thead class="thread-light">
                     <tr>
                         <th>Marca</th>
@@ -25,27 +25,43 @@
                         <th>Quilometragem</th>
                         <th>Detalhes</th>
                         <th>Editar</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($cars as $car)
                         <tr>
-                            <td>{{ $car->marca }}</td>
-                            <td>{{ $car->modelo }}</td>
-                            <td>{{ $car->revisao }}</td>
+                            <td class="align-middle">{{ $car->marca }}</td>
+                            <td class="align-middle">{{ $car->modelo }}</td>
+                            <td class="align-middle">{{ $car->revisao }}</td>
 
-                            @if($car->km_update('m') != Carbon::now()->month() )
-                                <td>{{ $car->km }}</td>
+                            @if((int) Carbon\Carbon::now()->format('M') - (int) $car->km_update->format('M') >= 3 )
+                                <td class="align-middle">{{ $car->km }} Kms
+                                    Atualizar Quilometragem
+                                </td class="align-middle">
                             @else
-                                <td>{{ $car->km }}</td>
+                                <td class="align-middle">{{ $car->km }}</td>
                             @endif
 
-                            <td><a href="{{ route('component.show', $c) }}">Detalhes</a></td>
-                            <td><a href="{{ route('component.edit', $c) }}">Editar</a></td>
+                            <td class="align-middle"><a href="{{ route('car.show', $car) }}">Detalhes</a></td>
+                            <td class="align-middle"><a href="{{ route('car.edit', ['car' => $car]) }}">Editar</a></td>
+                            <td class="align-middle"><form method="post" action="{{ route('car.destroy', ['car' => $car]) }}">
+                            @csrf
+                            @method('DELETE')
+                                <button type="submit" class="btn btn-link">Excluir</button>
+                            </form></td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            @if(count($cars) == 0)
+                <div class="d-flex justify-content-center">
+                    <p style="margin: 2rem; font-weight: bold">Não há carros cadastrados, adicione um para visualizá-lo aqui!</p>
+                </div>
+            @endif
+            <div class="d-flex justify-content-center" style="margin: 2rem">
+                <a type="button" style="width: 16rem" class="btn btn-success" href="{{ route('car.create') }}">Adicionar Carro</a>
+            </div>
         </div>
     </div>
 @endsection

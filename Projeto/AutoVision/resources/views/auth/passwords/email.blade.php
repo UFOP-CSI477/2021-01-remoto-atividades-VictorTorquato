@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.defaultLogged')
 
 @section('content')
 <div class="container" style="margin-top: 2rem">

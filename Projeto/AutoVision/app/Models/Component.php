@@ -12,7 +12,11 @@ class Component extends Model
     protected $fillable = [
         'car_id',
         'nome',
-        'prox_rev',
+        'label',
+        'km_rev',
+        'km_prox_rev', 
+        'data_rev',
+        'data_prox_rev'
     ];
 
     // 1 componente pertence a um carro

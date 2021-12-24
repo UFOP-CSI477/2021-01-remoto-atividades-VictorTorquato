@@ -15,15 +15,24 @@
         <div class="container-fluid bg-dark text-light p-3">
             <div class="row" style="padding-left: 2rem; padding-right: 2rem; padding-top: 2rem; align-items: end;">
                 <div class="col-sm">
-                    <h1>AutoVision</h1>
+                    <div style="justify-content: space-between; align-items: end" class="col-sm d-flex">
+                        <h1>AutoVision</h1>
+                        <h4>Bem vindo!</h4>
+                    </div>
+                    <div style="justify-content: space-between" class="col-sm d-flex">
+                        <p>Controle de Revisão de Veículos</p>
+                        @if(Auth::check())
+                            <h6>{{ Auth::user()->name }}</h6>
+                        @endif
+                    </div>
                 </div>
-                <p>Controle de Revisão de Veículos</p>
                 <hr>
                 <nav class="navbar navbar-expand-lg">
-                    <a class="nav-link" style="margin-right: 2rem; color: #fff;" href="{{ route('home') }}" type="button">Home</a>
+                    <a class="nav-link" style="margin-right: 2rem;" href="{{ route('home') }}" type="button">Home</a>
+                    <a class="nav-link" style="margin-right: 2rem;" href="{{ route('car.index') }}" type="button">Meus carros</a>
                     <div class="col-sm d-flex justify-content-end">
-                        <a type="button" style="width: 8rem; margin-right: 1rem" class="btn btn-primary" href="{{ route('login') }}">Entrar</a>
-                        <a type="button" style="width: 8rem" class="btn btn-secondary" href="{{ route('register') }}">Cadastrar</a>
+                        <a type="button" style="width: 8rem; margin-right: 1rem" class="nav-link" href="{{ route('user.show') }}">Minha Conta</a>
+                        <a type="button" style="width: 8rem" class="btn btn-secondary" href="{{ route('logout') }}">Sair</a>
                     </div>
                 </nav>
             </div>

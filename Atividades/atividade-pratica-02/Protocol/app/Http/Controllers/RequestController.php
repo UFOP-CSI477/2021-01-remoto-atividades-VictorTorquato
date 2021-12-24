@@ -111,14 +111,21 @@ class RequestController extends Controller
         $subject = $_POST['subject'];
         $description = $_POST['description'];
 
-        $request->subject_id = $subject;
-        $request->description = $description;
-        
-        $request->update();
+        if (!empty($subject) && !empty($description) && !empty($request)) {
+            
+            $request->subject_id = $subject;
+            $request->description = $description;
+            
+            $request->update();
 
-        Session::flash('message', 'Protocolo atualizado com sucesso!');
-        Session::flash('alert-class', 'alert-success'); 
-        return view('requests.show', ['request' => $request]);
+            Session::flash('message', 'Protocolo atualizado com sucesso!');
+            Session::flash('alert-class', 'alert-success'); 
+            return view('requests.show', ['request' => $request]);
+        } else {
+            Session::flash('message', 'Dados Inválidos!'); 
+            Session::flash('alert-class', 'alert-danger'); 
+            return back();
+        }
     }
 
     /**

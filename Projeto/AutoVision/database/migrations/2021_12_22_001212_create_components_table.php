@@ -17,7 +17,11 @@ class CreateComponentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('car_id');
             $table->string('nome');
-            $table->integer('prox_rev');
+            $table->string('label');
+            $table->integer('km_rev')->nullable();
+            $table->integer('km_prox_rev')->nullable();
+            $table->date('data_rev')->nullable();
+            $table->date('data_prox_rev')->nullable();
 
             $table->foreign('car_id')
                 ->references('id')
