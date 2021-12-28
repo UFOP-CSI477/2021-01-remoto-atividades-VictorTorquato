@@ -13,6 +13,11 @@
                 {{ Session::get('message') }}</p>
         @endif
 
+        @if(Session::has('atraso'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}" style="margin-top: 2rem">
+                {{ Session::get('atraso') }}</p>
+        @endif
+
         <h3 style="margin-top: 2rem">Dados do carro: </h3>
 
         <form>
@@ -88,7 +93,7 @@
                                     @if(Carbon\Carbon::parse($component->data_prox_rev)->diffInDays(Carbon\Carbon::now(), false) > 0)
                                         <td class="align-middle" style="color: red">Atrasada em {{Carbon\Carbon::parse($component->data_prox_rev)->diffInDays(Carbon\Carbon::now())}} dias</td> 
                                     @else
-                                        <td class="align-middle">{{ Carbon\Carbon::parse($component->data_prox_rev)->format("d/m/Y") }}</td> 
+                                        <td class="align-middle">Daqui {{Carbon\Carbon::parse($component->data_prox_rev)->diffInDays(Carbon\Carbon::now())}} dias</td> 
                                     @endif                                  
                                 @else
                                     <td class="align-middle">{{ $component->km_rev }} Kms</td>
@@ -96,7 +101,7 @@
                                     @if($component->car->km > $component->km_prox_rev)
                                         <td class="align-middle" style="color: red">Atrasada em {{ $component->car->km - $component->km_prox_rev }} Kms</td>
                                     @else
-                                        <td class="align-middle">{{ $component->km_prox_rev }} Kms</td>
+                                        <td class="align-middle">Daqui {{ $component->km_prox_rev - $component->car->km }} Km</td>
                                     @endif                                  
                                 @endif
                                 <td class="align-middle"><a href="{{ route('component.show', $component) }}">Detalhes</a></td>
