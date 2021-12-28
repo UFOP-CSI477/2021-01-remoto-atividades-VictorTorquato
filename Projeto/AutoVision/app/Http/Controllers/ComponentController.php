@@ -93,6 +93,10 @@ class ComponentController extends Controller
 
         $car->update();
         $component->update();
+
+        Session::flash('message', 'Revisão salva e componente atualizado com sucesso!');
+        Session::flash('alert-class', 'alert-success'); 
+
         return back();
     }
 

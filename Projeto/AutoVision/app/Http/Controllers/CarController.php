@@ -365,7 +365,7 @@ class CarController extends Controller
 
             Session::flash('message', 'Carro editado com sucesso!');
             Session::flash('alert-class', 'alert-success'); 
-            return view('car.show', ['car' => $car]);
+            return redirect('car');
             
         } else {
             Session::flash('message', 'Dados Inválidos!'); 
@@ -383,7 +383,6 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $id = $car->id;
-        $car->delete();
 
         $user = Auth::user();
         $cars = $user->cars;
@@ -392,10 +391,11 @@ class CarController extends Controller
         $user->cars = $cars;
         $user->update();
 
-        Component::all(['car_id' => $id])->delete();
+        Component::where('car_id', '=', $id)->delete();
+        $car->delete();
 
         Session::flash('message', 'Carro excluído com sucesso!');
         Session::flash('alert-class', 'alert-success'); 
-        return redirect('car');
+        return back();
     }
 }

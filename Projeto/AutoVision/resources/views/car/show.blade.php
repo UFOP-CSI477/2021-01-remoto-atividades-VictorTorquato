@@ -39,7 +39,7 @@
             
             <div class="form-group column">
                 <label for="kmText" style="font-weight: bold">Quilometragem:</label>
-                <text id="kmText">{{ $car->km }} Kms</text>
+                <text id="kmText">{{ $car->km }} Km</text>
             </div>
 
             <div class="form-group column">
@@ -96,7 +96,7 @@
                                         <td class="align-middle">Daqui {{Carbon\Carbon::parse($component->data_prox_rev)->diffInDays(Carbon\Carbon::now())}} dias</td> 
                                     @endif                                  
                                 @else
-                                    <td class="align-middle">{{ $component->km_rev }} Kms</td>
+                                    <td class="align-middle">{{ $component->km_rev }} Km</td>
 
                                     @if($component->car->km > $component->km_prox_rev)
                                         <td class="align-middle" style="color: red">Atrasada em {{ $component->car->km - $component->km_prox_rev }} Kms</td>
