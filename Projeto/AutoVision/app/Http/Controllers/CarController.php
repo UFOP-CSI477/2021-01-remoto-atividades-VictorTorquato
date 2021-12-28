@@ -118,7 +118,7 @@ class CarController extends Controller
         ]);
 
         $nome = "alinhamento";
-        $label = "Alinhamento das Rodas";
+        $label = "Alinhamento e Balanceamento";
         $km_rev = $car->km;
         $km_prox_rev = $car->km + 10000;
 
@@ -278,7 +278,49 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        return view('car.show', ['car' => $car]);
+        $components = [];
+        $now = Carbon::now();
+        
+        foreach ($car->components as $component) {
+            $c = $component;
+            $c->carName = $car->marca . ' ' . $car->modelo;
+            
+            if ($c->data_prox_rev != null)
+            {   
+                $data = $c->data_prox_rev;
+
+                if ($now->diffInDays(Carbon::parse($data), false) < 0 ) {
+                    $c->priority = 0;
+                } else if ($now->diffInDays(Carbon::parse($data), false) <= 15 ) {
+                    $c->priority = 1;
+                } else if ($now->diffInDays(Carbon::parse($data), false) <= 30 ) {
+                    $c->priority = 2;
+                } else if ($now->diffInDays(Carbon::parse($data), false) <= 90 ) {
+                    $c->priority = 3;
+                } else if ($now->diffInDays(Carbon::parse($data), false) > 90 ) {
+                    $c->priority = 4;
+                }
+            } else {
+                if ($c->km_prox_rev - $car->km < 0) {
+                    $c->priority = 0;
+                } else if ($c->km_prox_rev - $car->km <= 1000) {
+                    $c->priority = 1;
+                } else if ($c->km_prox_rev - $car->km <= 2500) {
+                    $c->priority = 2;
+                } else if ($c->km_prox_rev - $car->km <= 5000) {
+                    $c->priority = 3;
+                } else if ($c->km_prox_rev - $car->km > 5000) {
+                    $c->priority = 4;
+                } 
+            }
+            array_push($components, $c);
+        }
+
+        $comp = collect($components)->sortBy('data_prox_rev');
+        $comp = collect($comp)->sortBy('km_prox_rev');
+        $comp = collect($comp)->sortBy('priority');
+
+        return view('car.show', ['car' => $car, 'components' => $comp]);
     }
 
     /**
@@ -309,7 +351,11 @@ class CarController extends Controller
 
             $car->marca = $marca;
             $car->modelo = $modelo;
-            $car->km = $km;
+
+            if ($car->km != $km) {
+                $car->km = $km;
+                $car->km_update = date("Y-m-d");
+            }
 
             $car->update();
 

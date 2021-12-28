@@ -39,7 +39,6 @@
 
             <div class="form-group" style="margin-top: 2rem">
                 <a class="btn btn-info" style="width: 8rem" type="button" href="{{ route('user.edit') }}">Editar</a>
-                <a class="btn btn-secondary" style="width: 8rem" type="button" href="{{ route('home') }}">Voltar</a>
                 <button class="btn btn-danger" style="width: 8rem" type="submit">Excluir</button>
             </div>
 

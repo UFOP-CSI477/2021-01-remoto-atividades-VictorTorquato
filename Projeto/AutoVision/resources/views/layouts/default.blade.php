@@ -12,7 +12,7 @@
 
 </head>
     <body>
-        <div class="container-fluid bg-dark text-light p-3">
+        <div class="container-fluid text-light p-3" style="background-color: rgb(35, 36, 38)">
             <div class="row" style="padding-left: 2rem; padding-right: 2rem; padding-top: 2rem; align-items: end;">
                 <div class="col-sm">
                     <h1>AutoVision</h1>

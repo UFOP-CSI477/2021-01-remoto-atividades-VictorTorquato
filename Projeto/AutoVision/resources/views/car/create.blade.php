@@ -34,7 +34,7 @@
 
             <div class="form-group" style="margin-top: 1rem">
                 <button class="btn btn-success" style="width: 8rem" type="submit">Criar</button>
-                <a class="btn btn-secondary" style="width: 8rem" type="button" href="{{ route('home') }}">Voltar</a>
+                <a class="btn btn-secondary" style="width: 8rem" type="button" href="{{ route('car.index') }}">Voltar</a>
                 <button class="btn btn-secondary" style="width: 8rem" type="reset">Limpar</button>
             </div>
 

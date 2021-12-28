@@ -22,6 +22,8 @@ class CreateComponentsTable extends Migration
             $table->integer('km_prox_rev')->nullable();
             $table->date('data_rev')->nullable();
             $table->date('data_prox_rev')->nullable();
+            $table->string('carName')->nullable();
+            $table->integer('priority')->nullable();
 
             $table->foreign('car_id')
                 ->references('id')

@@ -24,18 +24,18 @@
             </div>
             
             <div class="form-group column">
-                <label for="descriptionInput">Modelo</label>
-                <input class="form-control" required="true" value="{{ $car->modelo }}" name="modelo" id="descriptionInput"/>
+                <label for="modeloInput">Modelo</label>
+                <input class="form-control" required="true" value="{{ $car->modelo }}" name="modelo" id="modeloInput"/>
             </div>
 
             <div class="form-group column">
-                <label for="descriptionInput">Quilometragem</label>
-                <input class="form-control" required="true" value="{{ $car->km }}" type="number" name="km" id="descriptionInput"/>
+                <label for="kmInput">Quilometragem</label>
+                <input class="form-control" required="true" value="{{ $car->km }}" type="number" name="km" id="kmInput"/>
             </div>
 
             <div class="form-group" style="margin-top: 1rem">
                 <button class="btn btn-success" style="width: 8rem" type="submit">Editar</button>
-                <a class="btn btn-secondary" style="width: 8rem" type="button" href="{{ route('car.index') }}">Voltar</a>
+                <a class="btn btn-secondary" style="width: 8rem" type="button" href="{{ route('car.show', $car) }}">Voltar</a>
                 <button class="btn btn-secondary" style="width: 8rem" type="reset">Limpar</button>
             </div>
 

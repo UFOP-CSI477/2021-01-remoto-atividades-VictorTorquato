@@ -12,9 +12,9 @@
 
 </head>
     <body>
-        <div class="container-fluid bg-dark text-light p-3">
-            <div class="row" style="padding-left: 2rem; padding-right: 2rem; padding-top: 2rem; align-items: end;">
-                <div class="col-sm">
+        <div class="container-fluid text-light p-3" style="background-color: rgb(35, 36, 38)">
+            <div class="row" style="align-items: end;">
+                <div class="col-sm" style="padding-left: 2rem; padding-right: 2rem; padding-top: 2rem;">
                     <div style="justify-content: space-between; align-items: end" class="col-sm d-flex">
                         <h1>AutoVision</h1>
                         <h4>Bem vindo!</h4>
@@ -28,10 +28,10 @@
                 </div>
                 <hr>
                 <nav class="navbar navbar-expand-lg">
-                    <a class="nav-link" style="margin-right: 2rem;" href="{{ route('home') }}" type="button">Home</a>
-                    <a class="nav-link" style="margin-right: 2rem;" href="{{ route('car.index') }}" type="button">Meus carros</a>
+                    <a class="nav-link" style="margin-right: 2rem; color: #fff;" href="{{ route('home') }}" type="button">Home</a>
+                    <a class="nav-link" style="margin-right: 2rem; color: #fff;" href="{{ route('car.index') }}" type="button">Meus carros</a>
                     <div class="col-sm d-flex justify-content-end">
-                        <a type="button" style="width: 8rem; margin-right: 1rem" class="nav-link" href="{{ route('user.show') }}">Minha Conta</a>
+                        <a type="button" style="width: 8rem; margin-right: 1rem; color: #fff;" class="nav-link" href="{{ route('user.show') }}">Minha Conta</a>
                         <a type="button" style="width: 8rem" class="btn btn-secondary" href="{{ route('logout') }}">Sair</a>
                     </div>
                 </nav>

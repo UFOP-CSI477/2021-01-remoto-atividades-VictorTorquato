@@ -6,17 +6,31 @@
 @extends('layouts.defaultLogged')
 @section('content')
 
-    <div class="container">
+    <div class="container" style="margin-top: 2rem">
 
         @if(Session::has('message'))
             <p class="alert {{ Session::get('alert-class', 'alert-info') }}" style="margin-top: 2rem">
                 {{ Session::get('message') }}</p>
         @endif
 
+        @for ($i = 0; $i < count($cars); $i++)
+
+            @if($cars[$i]->km_update->diffInMonths(Carbon\Carbon::now()) >= 2)
+                    
+                <p class="alert alert-warning">
+                    Alerta! O carro {{$cars[$i]->marca}} {{$cars[$i]->modelo}} está com a quilometragem a {{$cars[$i]->km_update->diffInDays(Carbon\Carbon::now())}} dias sem atualizar!
+                    Para o funcionamento correto do sistema, atualize-a em clicando 
+                    <a href="{{ route('car.edit', ['car' => $cars[$i]]) }}">aqui</a>
+                </p>
+
+            @endif
+
+        @endfor
+
         <h3 style="margin-top: 2rem">Carros Cadastrados: </h3>
 
         <div class="container" style="margin-top: 2rem">
-            <table class="table table-secondary table-striped table-bordered" style="text-align: center">
+            <table class="table table-hover" style="text-align: center">
                 <thead class="thread-light">
                     <tr>
                         <th>Marca</th>
@@ -33,14 +47,12 @@
                         <tr>
                             <td class="align-middle">{{ $car->marca }}</td>
                             <td class="align-middle">{{ $car->modelo }}</td>
-                            <td class="align-middle">{{ $car->revisao }}</td>
+                            <td class="align-middle">{{ Carbon\Carbon::parse($car->revisao)->format("d/m/Y") }}</td>
 
-                            @if((int) Carbon\Carbon::now()->format('M') - (int) $car->km_update->format('M') >= 3 )
-                                <td class="align-middle">{{ $car->km }} Kms
-                                    Atualizar Quilometragem
-                                </td class="align-middle">
+                            @if((int) Carbon\Carbon::now()->format('m') - (int) $car->km_update->format('m') >= 3 )
+                                <td class="align-middle">{{ $car->km }} Kms</td>
                             @else
-                                <td class="align-middle">{{ $car->km }}</td>
+                                <td class="align-middle">{{ $car->km }} Kms</td>
                             @endif
 
                             <td class="align-middle"><a href="{{ route('car.show', $car) }}">Detalhes</a></td>

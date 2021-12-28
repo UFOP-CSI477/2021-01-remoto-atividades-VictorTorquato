@@ -16,7 +16,10 @@ class Component extends Model
         'km_rev',
         'km_prox_rev', 
         'data_rev',
-        'data_prox_rev'
+        'data_prox_rev',
+        'carName',
+        'priority',
+        'atraso'
     ];
 
     // 1 componente pertence a um carro
