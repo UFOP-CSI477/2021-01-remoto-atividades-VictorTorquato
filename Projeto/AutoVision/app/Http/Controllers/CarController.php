@@ -291,6 +291,8 @@ class CarController extends Controller
 
                 if ($now->diffInDays(Carbon::parse($data), false) < 0 ) {
                     $c->priority = 0;
+                    Session::flash('message', 'Há componente(s) com revisão em atraso, verifique-os!'); 
+                    Session::flash('alert-class', 'alert-warning'); 
                 } else if ($now->diffInDays(Carbon::parse($data), false) <= 15 ) {
                     $c->priority = 1;
                 } else if ($now->diffInDays(Carbon::parse($data), false) <= 30 ) {
@@ -303,6 +305,8 @@ class CarController extends Controller
             } else {
                 if ($c->km_prox_rev - $car->km < 0) {
                     $c->priority = 0;
+                    Session::flash('message', 'Há componente(s) com revisão em atraso, verifique-os!'); 
+                    Session::flash('alert-class', 'alert-warning'); 
                 } else if ($c->km_prox_rev - $car->km <= 1000) {
                     $c->priority = 1;
                 } else if ($c->km_prox_rev - $car->km <= 2500) {
