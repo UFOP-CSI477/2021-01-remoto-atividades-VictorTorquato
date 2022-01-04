@@ -1,0 +1,64 @@
+.navLink {
+    margin-right: 2rem; 
+    color: #fff;
+}
+
+.navLink:hover {
+    color: rgb(150, 150, 150);
+}
+
+.adminBtn {
+    width: 24rem; 
+    height: 6rem; 
+    margin: 2rem;
+    text-align: center; 
+    line-height: 5rem;
+}
+  
+.imgContainer {
+    background: rgb(35, 36, 38);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+  
+.imgContainer img {
+    -webkit-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+  
+.imgContainer:hover img {
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -ms-filter: blur(4px);
+    -o-filter: blur(4px);
+    filter: blur(4px);
+    transform: scale(1.03);
+}
+
+.imgtext {
+    opacity: 0;
+    -webkit-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+.imgContainer:hover .imgtext {
+    -webkit-opacity: 1;
+    opacity: 1;
+}
+
+.carouselText {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.carouselTitle {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0);
+    font-weight: bold;
+    font-size: 36px;
+}
